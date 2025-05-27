@@ -1,3 +1,6 @@
+-- charlie polyfill
+-- for bad executors and vlua(u)
+
 local env = getfenv(0)
 
 local function polyfillGetFromAlias(alias)
@@ -16,12 +19,10 @@ local function polyfillGetFromAlias(alias)
 end
 
 local function polyfill(name, aliases, lastresort)
-    local existing = lastresort
+    local existing
     for _, alias in ipairs(aliases) do existing = polyfillGetFromAlias(alias); if existing then break end end
 
-    env[name] = existing
-
-    return existing
+    return existing or lastresort
 end
 
 gethui = polyfill('gethui', {'gethui'}, function() return game:GetService('Players').LocalPlayer.PlayerGui end)
