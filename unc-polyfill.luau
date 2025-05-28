@@ -53,7 +53,7 @@ GetObjects = function(content)
     return {LoadLocalAsset(content)}
 end
 
-HttpGet = function() local res = request({Url = url, Method = 'GET'}) return res.Body end
+HttpGet = function(url) local res = request({Url = url, Method = 'GET'}) return res.Body end
 HttpGetAsync = HttpGet
 GetPlatform = function() return game:GetService('UserInputService').TouchEnabled and Enum.Platform.IOS or Enum.Platform.Windows end
 
